@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, Dispatch } from '@reduxjs/toolkit';
+import { AnyAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosInstance } from '../../api/api';
 import { ActionType } from '../../constants/action-type';
 import { ApiRoute } from '../../constants/api-route';
@@ -9,6 +9,7 @@ import { IGuitar, IGuitarsState } from '../../types/IGuitars';
 import { IPagination } from '../../types/IPagination';
 import { QueryParametersType } from '../../types/query-params';
 import { loadTotalPageCount } from '../pagination/slice';
+import { AppDispatch, RootState } from '../store';
 
 const GUITARS_PER_PAGE = 9;
 const TotalCountHeader = 'x-total-count';
@@ -22,7 +23,7 @@ export const fetchFilteredGuitarsList = createAsyncThunk<Promise<void>, QueryPar
       return;
     }
 
-    const response: any = await axiosInstance.get(`${process.env.REACT_APP_SERVER_URL}${ApiRoute.Guitars}`, {
+    const response = await axiosInstance.get(`${process.env.REACT_APP_SERVER_URL}${ApiRoute.Guitars}`, {
       params: {
         [QueryParam.StringCount]: getState().filters.quantityOfStrings,
         [QueryParam.Type]: getState().filters.guitarType,
@@ -42,7 +43,7 @@ export const fetchFilteredGuitarsList = createAsyncThunk<Promise<void>, QueryPar
   },
 );
 
-export const fetchGuitarById = createAsyncThunk<Promise<void>, string, {state: {guitars: IGuitarsState}}>(
+export const fetchGuitarById = createAsyncThunk<Promise<void>, string, {state: RootState}>(
   ActionType.FETCH_GUITAR_BY_ID,
   async (id: string, {getState}) => {
     const {loading} = getState().guitars.guitarById;
@@ -61,7 +62,7 @@ export const fetchGuitarById = createAsyncThunk<Promise<void>, string, {state: {
   },
 );
 
-export const sendReviewToGuitar = createAsyncThunk<Promise<void>, ICommentPost, {dispatch: Dispatch<any>}>(
+export const sendReviewToGuitar = createAsyncThunk<Promise<void>, ICommentPost, {dispatch: AppDispatch}>(
   ActionType.SEND_REVIEW_TO_GUITAR,
   async (comment: ICommentPost, {dispatch}) => {
     try {
@@ -108,7 +109,7 @@ const guitars = createSlice({
           state.filteredGuitars.currentRequestId = action.meta.requestId;
         }
       })
-      .addCase(fetchFilteredGuitarsList.fulfilled, (state, action: any) => {
+      .addCase(fetchFilteredGuitarsList.fulfilled, (state, action: AnyAction) => {
         const { requestId } = action.meta;
 
         if (
@@ -126,7 +127,7 @@ const guitars = createSlice({
           state.guitarById.currentRequestId = action.meta.requestId;
         }
       })
-      .addCase(fetchGuitarById.fulfilled, (state, action: any) => {
+      .addCase(fetchGuitarById.fulfilled, (state, action: AnyAction) => {
         const { requestId } = action.meta;
 
         if (
