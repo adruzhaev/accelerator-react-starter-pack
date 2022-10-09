@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
 import {NotImplemented} from '../../components/not-implemented/not-implemented';
 import { NotFound } from '../not-found/not-found';
-import { Guitar } from '../guitar';
-import { Layout } from '../../components/layout';
+import { Guitar } from '../guitar/guitar';
+import { Layout } from '../../components/layout/layout';
 
 function App(): JSX.Element {
   return (

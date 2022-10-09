@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { AddReviewModal } from '.';
+import { AddReviewModal } from './add-review-modal';
 import { mockStore, getMockStore } from '../../helpers/get-mock-store';
 
 const handleModalClose = jest.fn();

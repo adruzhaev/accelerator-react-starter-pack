@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ProductDetails } from '.';
+import { ProductDetails } from './product-details';
 
 describe('ProductDetails Component', () => {
   test('should rendered correctly', () => {

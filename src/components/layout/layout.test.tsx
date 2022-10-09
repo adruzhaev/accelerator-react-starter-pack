@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { Layout } from '.';
+import { Layout } from './layout';
 import { getMockStore, mockStore } from '../../helpers/get-mock-store';
 
 describe('Layout component', () => {

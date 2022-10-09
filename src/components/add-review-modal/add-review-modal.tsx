@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
-import { Modal } from '../modal';
+import { Modal } from '../modal/modal';
 import { useForm } from '../../hooks/use-form';
 import { ICommentPost } from '../../types/IComment';
 import { useDispatch } from 'react-redux';

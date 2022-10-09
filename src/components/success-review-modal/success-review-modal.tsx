@@ -1,5 +1,5 @@
 import { Icon } from '../icon/icon';
-import { Modal } from '../modal';
+import { Modal } from '../modal/modal';
 import sprite from '../../assets/sprite.svg';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
 import { useRef } from 'react';

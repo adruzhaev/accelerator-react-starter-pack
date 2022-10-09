@@ -1,4 +1,4 @@
-import { Guitar } from '.';
+import { Guitar } from './guitar';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { mockStore, getMockStore } from '../../helpers/get-mock-store';

@@ -1,6 +1,6 @@
-import { AddToCart } from '../../components/add-to-cart';
-import { ProductDetails } from '../../components/product-details';
-import { Review } from '../../components/review';
+import { AddToCart } from '../../components/add-to-cart/add-to-cart';
+import { ProductDetails } from '../../components/product-details/product-details';
+import { Review } from '../../components/review/review';
 import { fetchGuitarById } from '../../store/guitars/slice';
 import { getGuitarById } from '../../store/guitars/selectors';
 import { useParams } from 'react-router-dom';
@@ -11,9 +11,9 @@ import { H2 } from '../../components/h2/h2';
 import { AppRoute } from '../../constants/app-route';
 import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency';
 import { IComment } from '../../types/IComment';
-import { AddReviewModal } from '../../components/add-review-modal';
+import { AddReviewModal } from '../../components/add-review-modal/add-review-modal';
 import { useModal } from '../../hooks/use-modal';
-import { SuccessReviewModal } from '../../components/success-review-modal';
+import { SuccessReviewModal } from '../../components/success-review-modal/success-review-modal';
 
 const breadcrumbsItems = [
   {title: 'Главная', link: AppRoute.Home},

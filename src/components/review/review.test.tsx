@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Review } from '.';
+import { Review } from './review';
 
 describe('Review Component', () => {
   test('should rendered correctly', () => {

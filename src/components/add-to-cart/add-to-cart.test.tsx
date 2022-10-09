@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { AddToCart } from '.';
+import { AddToCart } from './add-to-cart';
 
 describe('AddToCart Component', () => {
   test('should be rendered correctly', () => {
