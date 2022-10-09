@@ -17,7 +17,6 @@ const createMockGuitar = ():IGuitar => ({
   stringCount: 5,
   rating: 5,
   price: 100,
-  // comments?: Array<IComment>
 });
 
 export const getMockGuitars = () => {

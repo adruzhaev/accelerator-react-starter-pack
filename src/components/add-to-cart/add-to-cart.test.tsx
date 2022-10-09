@@ -13,11 +13,3 @@ describe('AddToCart Component', () => {
     expect(screen.getByText('Добавить в корзину')).toBeInTheDocument();
   });
 });
-
-// render(
-//   <BrowserRouter>
-//     <Basket />
-//   </BrowserRouter>,
-// );
-
-// expect(screen.getByText('Перейти в корзину')).toBeInTheDocument();

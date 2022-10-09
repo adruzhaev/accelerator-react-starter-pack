@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useEffect, RefObject } from 'react';
 
 export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
@@ -6,7 +5,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
   handler: () => void,
 ) => {
   useEffect(() => {
-    const listener = (event: Event) => {
+    const handleMouseDown = (event: Event) => {
       if (!ref.current || ref.current.contains((event?.target as Node))) {
         return;
       }
@@ -14,10 +13,10 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
       handler();
     };
 
-    document.addEventListener('mousedown', listener);
+    document.addEventListener('mousedown', handleMouseDown);
 
     return () => {
-      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('mousedown', handleMouseDown);
     };
   }, [ref, handler]);
 };

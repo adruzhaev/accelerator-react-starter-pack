@@ -47,9 +47,6 @@ export const fetchFilteredGuitarsList = createAsyncThunk<Promise<void>, QueryPar
     dispatch(loadTotalPageCount(allPages));
 
     return response.data;
-
-    // thunkApi.dispatch(loadTotalPageCount(allPages));
-    // thunkApi.dispatch(loadFilteredGuitars(response.data));
   },
 );
 
