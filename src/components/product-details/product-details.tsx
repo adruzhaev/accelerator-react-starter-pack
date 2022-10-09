@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useTabs } from '../../hooks/use-tabs';
+import { useState } from 'react';
 import { Rating } from '../rating/rating';
 
 const TabName = {
@@ -18,7 +18,7 @@ export function ProductDetails(props: {
   description: string
   commentsCount: number
 }) {
-  const [selectedTab, onTabClickHandler] = useTabs(TabName.Characteristics);
+  const [selectedTab, setSelectedTab] = useState(TabName.Characteristics);
 
   return (
     <div className="product-container__info-wrapper">
@@ -31,7 +31,7 @@ export function ProductDetails(props: {
           <button
             key={item}
             className={cn('button button--medium tabs__button', item !== selectedTab && 'button--black-border')}
-            onClick={() => onTabClickHandler(item)}
+            onClick={() => setSelectedTab(item)}
           >
             {item}
           </button>
