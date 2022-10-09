@@ -1,4 +1,4 @@
-import { loadGuitars, loadGuitarsByName } from './slice';
+import { loadGuitarsByName } from './slice';
 import { ApiRoute } from '../../constants/api-route';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { QueryParametersType } from '../../types/query-params';
@@ -13,14 +13,6 @@ import { IGuitarsState } from '../../types/IGuitars';
 const GUITARS_PER_PAGE = 9;
 const TotalCountHeader = 'x-total-count';
 const EmbedComments = 'comments';
-
-export const fetchGuitarsList = createAsyncThunk(
-  ActionType.FETCH_GUITARS,
-  async (_, thunkApi) => {
-    const response = await axiosInstance.get(`${process.env.REACT_APP_SERVER_URL}${ApiRoute.Guitars}`);
-    thunkApi.dispatch(loadGuitars(response.data));
-  },
-);
 
 export const fetchFilteredGuitarsList = createAsyncThunk<Promise<void>, QueryParametersType, {state: {filters: IFilters, pagination: IPagination, guitars: IGuitarsState}}>(
   ActionType.FETCH_FILTERED_GUITARS,

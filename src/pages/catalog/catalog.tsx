@@ -10,7 +10,6 @@ import { ProductItem } from '../../components/product-item/product-item';
 import { Pagination } from '../../components/pagination/pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredGuitars, getGuitarsForChosenStrings, getMinAndMaxGuitarsPrice, getStringsForChosenGuitars } from '../../store/guitars/selectors';
-import { fetchGuitarsList } from '../../store/guitars/api-actions';
 import {fetchFilteredGuitarsList} from '../../store/guitars/slice';
 import { QueryParam } from '../../constants/query-param';
 import { SortingOrder, SortingType } from '../../constants/sorting';
@@ -53,10 +52,6 @@ export function Catalog(props: {
   const {search, pathname} = useLocation();
   const history = useHistory();
   const urlSearchParams = useMemo(() => new URLSearchParams(search), [search]);
-
-  useEffect(() => {
-    dispatch(fetchGuitarsList());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchFilteredGuitarsList({
