@@ -18,12 +18,13 @@ export function InputSearch(props: {
   const history = useHistory();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchGuitarName(event.target.value);
+
     if (!event.target.value) {
       setIsSearchListOpened(false);
       return;
     }
 
-    setSearchGuitarName(event.target.value);
     dispatch(fetchGuitarsListByName(searchGuitarName));
     setIsSearchListOpened(true);
   };
@@ -51,7 +52,7 @@ export function InputSearch(props: {
         </button>
         <input
           className="form-search__input"
-          value={searchGuitarName}
+          value={searchGuitarName || ''}
           onChange={handleInputChange}
           placeholder="что вы ищите?"
           data-testid="search-guitars"
