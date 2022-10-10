@@ -15,10 +15,10 @@ import { AddReviewModal } from '../../components/add-review-modal/add-review-mod
 import { useModal } from '../../hooks/use-modal';
 import { SuccessReviewModal } from '../../components/success-review-modal/success-review-modal';
 
-const breadcrumbsItems = [
+const getBreadcrumbsItems = (guitarName = 'guitar') => [
   {title: 'Главная', link: AppRoute.Home},
   {title: 'Каталог', link: AppRoute.getCatalog('1')},
-  {title: 'Товар', link: ''},
+  {title: guitarName, link: ''},
 ];
 
 const REVIEWS_TO_SHOW = 3;
@@ -30,6 +30,7 @@ export function Guitar() {
   const [isAddReviewModalShown, handleAddReviewModalOpen, handleAddReviewModalClose] = useModal();
   const [isSuccessReviewModalShown, handleSuccessReviewModalOpen, handleSuccessReviewModalClose] = useModal();
   const {data: guitar, loading} = useSelector(getGuitarById);
+  const breadcrumbs = getBreadcrumbsItems(guitar.name);
 
   const showMoreReviewsClickHandler = () => {
     setReviewsToShow(reviewsToShow + REVIEWS_TO_SHOW);
@@ -42,7 +43,7 @@ export function Guitar() {
   return (
     <div className="container">
       <H2 title="Товар" />
-      <Breadcrumbs className="breadcrumbs" items={breadcrumbsItems} />
+      <Breadcrumbs className="breadcrumbs" items={breadcrumbs} />
 
       {
         loading === 'idle' &&
@@ -109,21 +110,27 @@ export function Guitar() {
         </a>
       </section>
 
-      <AddReviewModal
-        isModalShown={isAddReviewModalShown}
-        handleModalClose={handleAddReviewModalClose}
-        handleReviewFormSend={(): void => {
-          handleAddReviewModalClose();
-          handleSuccessReviewModalOpen();
-        }}
-        guitarName={guitar.name}
-        guitarId={Number(guitar.id)}
-      />
+      {
+        isAddReviewModalShown &&
+        <AddReviewModal
+          isModalShown={isAddReviewModalShown}
+          handleModalClose={handleAddReviewModalClose}
+          handleReviewFormSend={(): void => {
+            handleAddReviewModalClose();
+            handleSuccessReviewModalOpen();
+          }}
+          guitarName={guitar.name}
+          guitarId={Number(guitar.id)}
+        />
+      }
 
-      <SuccessReviewModal
-        isModalShown={isSuccessReviewModalShown}
-        handleModalClose={handleSuccessReviewModalClose}
-      />
+      {
+        isSuccessReviewModalShown &&
+        <SuccessReviewModal
+          isModalShown={isSuccessReviewModalShown}
+          handleModalClose={handleSuccessReviewModalClose}
+        />
+      }
     </div>
   );
 }

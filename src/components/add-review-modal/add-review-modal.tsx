@@ -39,7 +39,7 @@ export function AddReviewModal(props: {
           <div className="form-review__wrapper">
             <div className="form-review__name-wrapper">
               <label className="form-review__label form-review__label--required" htmlFor="user-name">
-              Ваше Имя
+                Ваше Имя
               </label>
               <input
                 className="form-review__input form-review__input--name"
@@ -55,7 +55,7 @@ export function AddReviewModal(props: {
             </div>
             <div>
               <span className="form-review__label form-review__label--required">
-              Ваша Оценка
+                Ваша Оценка
               </span>
               <div className="rate rate--reverse">
                 <input className="visually-hidden" onChange={handleFormChange} type="radio" id="star-5" name="rating" value="5" />
@@ -111,7 +111,7 @@ export function AddReviewModal(props: {
             className="button button--medium-20 form-review__button"
             type="submit"
           >
-          Отправить отзыв
+            Отправить отзыв
           </button>
         </form>
 

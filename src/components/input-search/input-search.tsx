@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, DetailedHTMLProps, useState, ChangeEvent } from 'react';
+import { InputHTMLAttributes, DetailedHTMLProps, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { Icon } from '../icon/icon';
 import sprite from '../../assets/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,6 +34,14 @@ export function InputSearch(props: {
     history.push(AppRoute.getGuitar(id));
   };
 
+  const handleEnterPress = (evt: KeyboardEvent, id: string) => {
+    if (evt.key === 'Enter') {
+      setSearchGuitarName('');
+      setIsSearchListOpened(false);
+      history.push(AppRoute.getGuitar(id));
+    }
+  };
+
   return (
     <div className="form-search">
       <form className="form-search__form">
@@ -56,7 +64,13 @@ export function InputSearch(props: {
       {isSearchListOpened &&
         <ul className="form-search__select-list" style={{ background: '#131212', zIndex: 5 }}>
           {guitarsByName.map((guitar) => (
-            <li key={guitar.id} className="form-search__select-item" onClick={() => handleGuitarClick(guitar.id)} tabIndex={0}>
+            <li
+              key={guitar.id}
+              className="form-search__select-item"
+              onClick={() => handleGuitarClick(guitar.id)}
+              onKeyDown={(evt: KeyboardEvent<HTMLLIElement>) => handleEnterPress(evt, guitar.id)}
+              tabIndex={0}
+            >
               {guitar.name}
             </li>))}
         </ul>}
