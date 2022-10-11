@@ -7,17 +7,21 @@ export function Button(props: {
     type: ButtonType
     isSmallButton?: boolean
     isMiniButton?: boolean
+    onClick?: () => void
 }) {
   return (
-    <button className={cn('button',
-      {
-        'button--red button--add-to-cart': props.type === 'buy',
-        'button--red-border button--in-cart': props.type === 'cart',
-        'button--small': props.isSmallButton,
-        'button--mini': props.isMiniButton,
-      },
-      props.className,
-    )}
+    <button
+      className={cn('button',
+        {
+          'button--red button--add-to-cart': props.type === 'buy',
+          'button--red-border button--in-cart': props.type === 'cart',
+          'button--small': props.isSmallButton,
+          'button--mini': props.isMiniButton,
+        },
+        props.className,
+      )}
+
+      onClick={props.onClick}
     >
       {props.title}
     </button>
