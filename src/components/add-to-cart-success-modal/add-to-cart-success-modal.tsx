@@ -10,6 +10,7 @@ import { AppRoute } from '../../constants/app-route';
 export function AddToCartSuccessModal(props: {
   isModalShown: boolean
   handleModalClose: () => void
+  isContinueOnCatalog?: boolean
 }) {
   const addToCartModalSuccessRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalSuccessRef, props.handleModalClose);
@@ -29,12 +30,25 @@ export function AddToCartSuccessModal(props: {
           >
             Перейти в корзину
           </Link>
-          <button
-            className="button button--black-border button--small modal__button modal__button--right"
-            onClick={props.handleModalClose}
-          >
-            Продолжить покупки
-          </button>
+          {
+            !props.isContinueOnCatalog &&
+            <button
+              className="button button--black-border button--small modal__button modal__button--right"
+              onClick={props.handleModalClose}
+            >
+              Продолжить покупки
+            </button>
+          }
+
+          {
+            props.isContinueOnCatalog &&
+            <Link
+              className="button button--black-border button--small modal__button modal__button--right"
+              to={AppRoute.getCatalog('1')}
+            >
+              Продолжить покупки
+            </Link>
+          }
         </div>
 
         <button
