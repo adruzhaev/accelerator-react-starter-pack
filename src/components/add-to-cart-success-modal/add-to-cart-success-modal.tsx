@@ -6,12 +6,14 @@ import { useRef } from 'react';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
+import { useHistory } from 'react-router-dom';
 
 export function AddToCartSuccessModal(props: {
   isModalShown: boolean
   handleModalClose: () => void
   isContinueOnCatalog?: boolean
 }) {
+  const history = useHistory();
   const addToCartModalSuccessRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalSuccessRef, props.handleModalClose);
 
@@ -24,12 +26,15 @@ export function AddToCartSuccessModal(props: {
         </p>
 
         <div className="modal__button-container modal__button-container--add">
-          <Link
+          <button
             className="button button--small modal__button"
-            to={AppRoute.Cart}
+            onClick={() => {
+              props.handleModalClose();
+              history.push(AppRoute.Cart);
+            }}
           >
             Перейти в корзину
-          </Link>
+          </button>
           {
             !props.isContinueOnCatalog &&
             <button

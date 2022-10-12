@@ -4,12 +4,7 @@ import { IGuitar } from '../../types/IGuitars';
 import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency';
 import { useRef } from 'react';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
-
-const guitarTypes = new Map([
-  ['acoustic', 'Акустическая'],
-  ['ukulele', 'Укулеле'],
-  ['electric', 'Электрогитара'],
-]);
+import { GuitarTypes } from '../../constants/product-types';
 
 export function AddToCartModal(props: {
   isModalShown: boolean
@@ -43,7 +38,7 @@ export function AddToCartModal(props: {
               Артикул: {props.guitar.vendorCode}
             </p>
             <p className="modal__product-params">
-              {guitarTypes.get(props.guitar.type)}, {props.guitar.stringCount} струнная
+              {GuitarTypes.get(props.guitar.type)}, {props.guitar.stringCount} струнная
             </p>
             <p className="modal__price-wrapper">
               <span className="modal__price">Цена:</span>
