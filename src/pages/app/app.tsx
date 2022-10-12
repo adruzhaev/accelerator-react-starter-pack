@@ -5,7 +5,7 @@ import {NotImplemented} from '../../components/not-implemented/not-implemented';
 import { NotFound } from '../not-found/not-found';
 import { Guitar } from '../guitar/guitar';
 import { Layout } from '../../components/layout/layout';
-import { Cart } from '../../components/cart/cart';
+import { Cart } from '../cart/cart';
 
 function App(): JSX.Element {
   return (
@@ -15,7 +15,7 @@ function App(): JSX.Element {
 
         <Route path={`${AppRoute.getGuitar()}`} component={Guitar} />
 
-        <Route path={`${AppRoute.Cart}`} component={Cart} />
+        <Route path={AppRoute.Cart} component={Cart} />
 
         <Route path={AppRoute.Address}>
           <NotImplemented text='Address' />
