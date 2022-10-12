@@ -14,10 +14,16 @@ const guitarTypes = new Map([
 export function AddToCartModal(props: {
   isModalShown: boolean
   handleModalClose: () => void
+  handleAddToCartButtonClick: () => void
   guitar: IGuitar
 }) {
   const addToCartModalRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalRef, props.handleModalClose);
+
+  const handleAddToCartModalClose = () => {
+    props.handleAddToCartButtonClick();
+    props.handleModalClose();
+  };
 
   return (
     <LockFocus>
@@ -46,7 +52,10 @@ export function AddToCartModal(props: {
           </div>
         </div>
         <div className="modal__button-container">
-          <button className="button button--red button--big modal__button modal__button--add">
+          <button
+            className="button button--red button--big modal__button modal__button--add"
+            onClick={handleAddToCartModalClose}
+          >
             Добавить в корзину
           </button>
         </div>
