@@ -26,7 +26,7 @@ export function AddToCartSuccessModal(props: {
         <div className="modal__button-container modal__button-container--add">
           <Link
             className="button button--small modal__button"
-            to={AppRoute.Basket}
+            to={AppRoute.Cart}
           >
             Перейти в корзину
           </Link>

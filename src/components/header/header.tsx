@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { InputSearch } from '../input-search/input-search';
 import { Logo } from '../logo/logo';
-import { Basket } from '../basket/basket';
+import { Cart } from '../cart/cart';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
 
@@ -49,7 +49,7 @@ export function Header(props: {
         </nav>
 
         <InputSearch />
-        <Basket />
+        <Cart />
       </div>
     </header>);
 }

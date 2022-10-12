@@ -4,5 +4,5 @@ export const AppRoute = {
   getCatalog: (pageNumber = ':page') => `/catalog/page_${pageNumber}`,
   getGuitar: (id = ':id') => `/guitars/${id}`,
   Home: '/',
-  Basket: '/basket',
+  Cart: '/cart',
 } as const;
