@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 import { ICart } from '../../types/ICart';
 
@@ -15,11 +14,18 @@ const cart = createSlice({
       state.items.push(action.payload);
     },
     deleteFromCart: (state, action) => {
-      const itemToDelete = state.items.findIndex((item) => item.guitar.id === action.payload.id);
-      console.log('itemToDelete: ', itemToDelete);
+      state.items = state.items.filter((item) => item.guitar.id !== action.payload.guitar.id);
+    },
+    incrementGuitarQuantity: (state, action) => {
+      const guitar = state.items.find((item) => item.guitar.id === action.payload);
+      guitar?.quantity && guitar.quantity++;
+    },
+    decrementGuitarQuantity: (state, action) => {
+      const guitar = state.items.find((item) => item.guitar.id === action.payload);
+      guitar?.quantity && guitar.quantity--;
     },
   },
 });
 
-export const { addToCart } = cart.actions;
+export const { addToCart, deleteFromCart, incrementGuitarQuantity, decrementGuitarQuantity } = cart.actions;
 export default cart.reducer;

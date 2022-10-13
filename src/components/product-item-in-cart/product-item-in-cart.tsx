@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Icon } from '../icon/icon';
 import sprite from '../../assets/sprite.svg';
 import { GuitarTypes } from '../../constants/product-types';
@@ -5,13 +6,32 @@ import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency'
 import { ICartItem } from '../../types/ICart';
 import { useModal } from '../../hooks/use-modal';
 import { RemoveFromCartModal } from '../remove-from-cart-modal/remove-from-cart-modal';
+import { useDispatch } from 'react-redux';
+import { incrementGuitarQuantity, decrementGuitarQuantity } from '../../store/cart/slice';
 
 export function ProductItemInCart(props: {
   guitar: ICartItem
 }) {
-  const {name, vendorCode, type, stringCount, previewImg, price} = props.guitar.guitar;
+  const dispatch = useDispatch();
+  const {id, name, vendorCode, type, stringCount, previewImg, price} = props.guitar.guitar;
   const {quantity} = props.guitar;
   const [isRemoveFromCartModalShown, handleRemoveFromCartModalOpen, handleRemoveFromCartModalClose] = useModal();
+
+  const handleGuitarCountDecrement = () => {
+    if (quantity === 1) {
+      handleRemoveFromCartModalOpen();
+    } else {
+      dispatch(decrementGuitarQuantity(id));
+    }
+  };
+
+  const handleGuitarCountIncrement = () => {
+    dispatch(incrementGuitarQuantity(id));
+  };
+
+  const handleInputPriceChange = () => {
+    console.log(123);
+  };
 
   return (
     <div className="cart-item">
@@ -40,13 +60,21 @@ export function ProductItemInCart(props: {
       </div>
 
       <div className="quantity cart-item__quantity">
-        <button className="quantity__button" aria-label="Уменьшить количество">
+        <button
+          className="quantity__button"
+          onClick={handleGuitarCountDecrement}
+          aria-label="Уменьшить количество"
+        >
           <Icon width="8" height="2" name={`${sprite}#minus`} />
         </button>
 
-        <input className="quantity__input" type="number" placeholder="1" id="4-count" name="4-count" max="99" />
+        <input className="quantity__input" value={quantity} onChange={handleInputPriceChange} type="number" placeholder="1" id="4-count" name="4-count" max="99" />
 
-        <button className="quantity__button" aria-label="Увеличить количество">
+        <button
+          className="quantity__button"
+          onClick={handleGuitarCountIncrement}
+          aria-label="Увеличить количество"
+        >
           <Icon width="8" height="8" name={`${sprite}#plus`} />
         </button>
       </div>

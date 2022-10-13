@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Breadcrumbs } from '../../components/breadcrumbs/breadcrumbs';

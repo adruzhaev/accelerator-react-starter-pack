@@ -5,15 +5,23 @@ import { useOnClickOutside } from '../../hooks/use-outside-click';
 import { IGuitar } from '../../types/IGuitars';
 import { GuitarTypes } from '../../constants/product-types';
 import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency';
+import { useDispatch } from 'react-redux';
+import { deleteFromCart } from '../../store/cart/slice';
 
 export function RemoveFromCartModal(props: {
   isModalShown: boolean
   handleModalClose: () => void
   guitar: IGuitar
 }) {
+  const dispatch = useDispatch();
   const {name, vendorCode, type, stringCount, previewImg, price} = props.guitar;
   const removeFromCartModalRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(removeFromCartModalRef, props.handleModalClose);
+
+  const handleRemoveFromCartButtonClick = () => {
+    dispatch(deleteFromCart({guitar: props.guitar}));
+    props.handleModalClose();
+  };
 
   return (
     <LockFocus>
@@ -42,7 +50,12 @@ export function RemoveFromCartModal(props: {
           </div>
         </div>
         <div className="modal__button-container">
-          <button className="button button--small modal__button">Удалить товар</button>
+          <button
+            className="button button--small modal__button"
+            onClick={handleRemoveFromCartButtonClick}
+          >
+            Удалить товар
+          </button>
           <button
             className="button button--black-border button--small modal__button modal__button--right"
             onClick={props.handleModalClose}

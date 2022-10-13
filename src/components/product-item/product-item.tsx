@@ -7,6 +7,8 @@ import { useModal } from '../../hooks/use-modal';
 import { AddToCartModal } from '../add-to-cart-modal/add-to-cart-modal';
 import { IGuitar } from '../../types/IGuitars';
 import { AddToCartSuccessModal } from '../add-to-cart-success-modal/add-to-cart-success-modal';
+import { getGuitarsFromCart } from '../../store/cart/selectors';
+import { useSelector } from 'react-redux';
 
 export function ProductItem(props: {
   className?: string,
@@ -15,6 +17,8 @@ export function ProductItem(props: {
   const {id, name, price, previewImg, rating, comments} = props.guitar;
   const [isAddToCartModalShown, handleAddToCartModalOpen, handleAddToCartModalClose] = useModal();
   const [isAddToCartSuccessModalShown, handleAddToCartSuccessModalOpen, handleAddToCartSuccessModalClose] = useModal();
+  const guitars = useSelector(getGuitarsFromCart);
+  const isGuitarInCart = Boolean(guitars.find((item) => item.guitar.id === id));
 
   return (
     <div className={cn('product-card', props.className)}>
@@ -32,12 +36,26 @@ export function ProductItem(props: {
           Подробнее
         </Link>
 
-        <Button
-          isMiniButton
-          title="Купить"
-          type="buy"
-          onClick={handleAddToCartModalOpen}
-        />
+        {
+          !isGuitarInCart &&
+          <Button
+            isMiniButton
+            title="Купить"
+            type="buy"
+            onClick={handleAddToCartModalOpen}
+          />
+        }
+
+        {
+          isGuitarInCart &&
+          <Link
+            className="button button--red-border button--in-cart button--mini"
+            onClick={handleAddToCartModalOpen}
+            to={AppRoute.Cart}
+          >
+            В корзине
+          </Link>
+        }
       </div>
 
       {
