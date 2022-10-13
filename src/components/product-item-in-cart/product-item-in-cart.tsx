@@ -1,17 +1,26 @@
 import { Icon } from '../icon/icon';
 import sprite from '../../assets/sprite.svg';
-import { IGuitar } from '../../types/IGuitars';
 import { GuitarTypes } from '../../constants/product-types';
 import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency';
+import { ICartItem } from '../../types/ICart';
+import { useModal } from '../../hooks/use-modal';
+import { RemoveFromCartModal } from '../remove-from-cart-modal/remove-from-cart-modal';
 
 export function ProductItemInCart(props: {
-  guitar: IGuitar
+  guitar: ICartItem
 }) {
-  const {name, vendorCode, type, stringCount, previewImg, price} = props.guitar;
+  const {name, vendorCode, type, stringCount, previewImg, price} = props.guitar.guitar;
+  const {quantity} = props.guitar;
+  const [isRemoveFromCartModalShown, handleRemoveFromCartModalOpen, handleRemoveFromCartModalClose] = useModal();
 
   return (
     <div className="cart-item">
-      <button className="cart-item__close-button button-cross" type="button" aria-label="Удалить">
+      <button
+        className="cart-item__close-button button-cross"
+        onClick={handleRemoveFromCartModalOpen}
+        type="button"
+        aria-label="Удалить"
+      >
         <span className="button-cross__icon" />
         <span className="cart-item__close-button-interactive-area" />
       </button>
@@ -43,8 +52,17 @@ export function ProductItemInCart(props: {
       </div>
 
       <div className="cart-item__price-total">
-        34 500 ₽
+        {formatNumberAsCurrency(price * quantity)} ₽
       </div>
+
+      {
+        isRemoveFromCartModalShown &&
+        <RemoveFromCartModal
+          guitar={props.guitar.guitar}
+          isModalShown={isRemoveFromCartModalShown}
+          handleModalClose={handleRemoveFromCartModalClose}
+        />
+      }
     </div>
   );
 }

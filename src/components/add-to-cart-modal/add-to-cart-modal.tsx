@@ -5,6 +5,8 @@ import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency'
 import { useRef } from 'react';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
 import { GuitarTypes } from '../../constants/product-types';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/cart/slice';
 
 export function AddToCartModal(props: {
   isModalShown: boolean
@@ -12,10 +14,12 @@ export function AddToCartModal(props: {
   handleAddToCartButtonClick: () => void
   guitar: IGuitar
 }) {
+  const dispatch = useDispatch();
   const addToCartModalRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalRef, props.handleModalClose);
 
-  const handleAddToCartModalClose = () => {
+  const handleAddToCartCLick = () => {
+    dispatch(addToCart({guitar: props.guitar, quantity: 1}));
     props.handleAddToCartButtonClick();
     props.handleModalClose();
   };
@@ -49,7 +53,7 @@ export function AddToCartModal(props: {
         <div className="modal__button-container">
           <button
             className="button button--red button--big modal__button modal__button--add"
-            onClick={handleAddToCartModalClose}
+            onClick={handleAddToCartCLick}
           >
             Добавить в корзину
           </button>

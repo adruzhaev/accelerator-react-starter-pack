@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Breadcrumbs } from '../../components/breadcrumbs/breadcrumbs';
@@ -5,7 +7,7 @@ import { CartFooter } from '../../components/cart-footer/cart-footer';
 import { H2 } from '../../components/h2/h2';
 import { ProductItemInCart } from '../../components/product-item-in-cart/product-item-in-cart';
 import { AppRoute } from '../../constants/app-route';
-import { getFilteredGuitars } from '../../store/guitars/selectors';
+import { getGuitarsFromCart } from '../../store/cart/selectors';
 
 const breadcrumbs = [
   {title: 'Главная', link: AppRoute.Home},
@@ -14,8 +16,7 @@ const breadcrumbs = [
 ];
 
 export function Cart() {
-  // Temporary as adding to cart logic is not implemented yet
-  const {data: guitars} = useSelector(getFilteredGuitars);
+  const guitars = useSelector(getGuitarsFromCart);
 
   useEffect(() => {
     document.body.style.overflow = 'visible';
@@ -28,8 +29,8 @@ export function Cart() {
 
       <div className="cart">
         {
-          guitars.slice(0, 2).map((item) => (
-            <ProductItemInCart key={item.id} guitar={item} />
+          guitars.length > 0 && guitars.map((item) => (
+            <ProductItemInCart key={item.guitar.id} guitar={item} />
           ))
         }
       </div>
