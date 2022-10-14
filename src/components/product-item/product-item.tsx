@@ -7,8 +7,7 @@ import { useModal } from '../../hooks/use-modal';
 import { AddToCartModal } from '../add-to-cart-modal/add-to-cart-modal';
 import { IGuitar } from '../../types/IGuitars';
 import { AddToCartSuccessModal } from '../add-to-cart-success-modal/add-to-cart-success-modal';
-import { getGuitarsFromCart } from '../../store/cart/selectors';
-import { useSelector } from 'react-redux';
+import { useIsGuitarInCart } from '../../hooks/use-is-guitar-in-cart';
 
 export function ProductItem(props: {
   className?: string,
@@ -17,8 +16,7 @@ export function ProductItem(props: {
   const {id, name, price, previewImg, rating, comments} = props.guitar;
   const [isAddToCartModalShown, handleAddToCartModalOpen, handleAddToCartModalClose] = useModal();
   const [isAddToCartSuccessModalShown, handleAddToCartSuccessModalOpen, handleAddToCartSuccessModalClose] = useModal();
-  const guitars = useSelector(getGuitarsFromCart);
-  const isGuitarInCart = Boolean(guitars.find((item) => item.guitar.id === id));
+  const isGuitarInCart = useIsGuitarInCart(id);
 
   return (
     <div className={cn('product-card', props.className)}>
@@ -61,6 +59,7 @@ export function ProductItem(props: {
       {
         isAddToCartModalShown &&
         <AddToCartModal
+          isGuitarInCart={isGuitarInCart}
           isModalShown={isAddToCartModalShown}
           handleModalClose={handleAddToCartModalClose}
           handleAddToCartButtonClick={handleAddToCartSuccessModalOpen}

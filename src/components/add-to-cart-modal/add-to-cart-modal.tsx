@@ -6,20 +6,32 @@ import { useRef } from 'react';
 import { useOnClickOutside } from '../../hooks/use-outside-click';
 import { GuitarTypes } from '../../constants/product-types';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/cart/slice';
+import { addToCart, incrementGuitarQuantity } from '../../store/cart/slice';
 
 export function AddToCartModal(props: {
   isModalShown: boolean
   handleModalClose: () => void
   handleAddToCartButtonClick: () => void
   guitar: IGuitar
+  isGuitarInCart: boolean
 }) {
   const dispatch = useDispatch();
   const addToCartModalRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalRef, props.handleModalClose);
 
+  // eslint-disable-next-line no-console
+  console.log(props.isGuitarInCart);
+
   const handleAddToCartCLick = () => {
-    dispatch(addToCart({guitar: props.guitar, quantity: 1}));
+    if (props.isGuitarInCart) {
+
+
+      dispatch(incrementGuitarQuantity(props.guitar.id));
+    } else {
+
+      dispatch(addToCart({guitar: props.guitar, quantity: 1}));
+    }
+
     props.handleAddToCartButtonClick();
     props.handleModalClose();
   };
