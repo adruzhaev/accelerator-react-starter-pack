@@ -8,7 +8,7 @@ export function CartOrderAmount(props: {
   return (
     <div className="cart__total-info">
       <Item title="Всего" amount={props.totalPrice} />
-      <Item amountClassName="cart__total-value--bonus" title="Скидка" amount={props.discount} />
+      <Item amountClassName={props.discount > 0 ? 'cart__total-value--bonus' : ''} title="Скидка" amount={props.discount} />
       <Item amountClassName="cart__total-value--payment" title="К оплате" amount={props.totalPriceAfterDiscount} />
 
       <button className="button button--red button--big cart__order-button">

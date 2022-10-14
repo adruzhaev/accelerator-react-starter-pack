@@ -31,9 +31,12 @@ export function Cart() {
             <ProductItemInCart key={item.guitar.id} guitar={item} />
           ))
         }
+        {
+          guitars.length === 0 && 'Добавьте товар в корзину.'
+        }
       </div>
 
-      <CartFooter />
+      {guitars.length > 0 && <CartFooter />}
     </div>
   );
 }

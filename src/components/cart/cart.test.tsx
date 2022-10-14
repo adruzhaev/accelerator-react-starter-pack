@@ -6,7 +6,7 @@ describe('Basket component', () => {
   it('Should be rendered correctly', () => {
     render(
       <BrowserRouter>
-        <Cart />
+        <Cart guitarsQuantity={4} />
       </BrowserRouter>,
     );
 

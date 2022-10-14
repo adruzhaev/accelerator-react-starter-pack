@@ -14,7 +14,7 @@ export function Item(props: {
         {props.title}:
       </span>
       <span className={cn('cart__total-value', props.amountClassName)}>
-        {props.title === 'Скидка' && '- '}
+        {props.title === 'Скидка' && props.amount > 0 && '- '}
         {formatNumberAsCurrency(props.amount)} ₽
       </span>
     </p>

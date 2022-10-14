@@ -19,9 +19,6 @@ export function AddToCartModal(props: {
   const addToCartModalRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(addToCartModalRef, props.handleModalClose);
 
-  // eslint-disable-next-line no-console
-  console.log(props.isGuitarInCart);
-
   const handleAddToCartCLick = () => {
     if (props.isGuitarInCart) {
 
