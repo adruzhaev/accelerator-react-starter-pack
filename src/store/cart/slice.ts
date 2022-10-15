@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MAX_ITEM_QUANTITY, MIN_ITEM_QUANTITY } from '../../constants/cart';
 import { ICart } from '../../types/ICart';
 
 export const initialState: ICart = {
@@ -18,14 +19,36 @@ const cart = createSlice({
     },
     incrementGuitarQuantity: (state, action) => {
       const guitar = state.items.find((item) => item.guitar.id === action.payload);
-      guitar?.quantity && guitar.quantity++;
+
+      if (guitar?.quantity && guitar.quantity >= MAX_ITEM_QUANTITY) {
+        guitar.quantity = MAX_ITEM_QUANTITY;
+      } else {
+        guitar?.quantity && guitar.quantity++;
+      }
     },
     decrementGuitarQuantity: (state, action) => {
       const guitar = state.items.find((item) => item.guitar.id === action.payload);
       guitar?.quantity && guitar.quantity--;
     },
+    changeGuitarInputQuantity: (state, action) => {
+      const guitar = state.items.find((item) => item.guitar.id === action.payload.id);
+
+      if (guitar?.quantity && action.payload.value) {
+        guitar.quantity = Number(action.payload.value);
+      }
+
+      if (guitar?.quantity === 0) {
+        guitar.quantity = MIN_ITEM_QUANTITY;
+      }
+
+      if (guitar?.quantity && guitar.quantity >= MAX_ITEM_QUANTITY) {
+        guitar.quantity = MAX_ITEM_QUANTITY;
+      }
+    },
   },
 });
 
-export const { addToCart, deleteFromCart, incrementGuitarQuantity, decrementGuitarQuantity } = cart.actions;
+export const {
+  addToCart, deleteFromCart, incrementGuitarQuantity, decrementGuitarQuantity, changeGuitarInputQuantity,
+} = cart.actions;
 export default cart.reducer;

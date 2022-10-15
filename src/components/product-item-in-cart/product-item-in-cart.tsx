@@ -1,13 +1,13 @@
-/* eslint-disable no-console */
+import { ChangeEvent } from 'react';
 import { Icon } from '../icon/icon';
-import sprite from '../../assets/sprite.svg';
 import { GuitarTypes } from '../../constants/product-types';
 import { formatNumberAsCurrency } from '../../helpers/format-number-as-currency';
 import { ICartItem } from '../../types/ICart';
 import { useModal } from '../../hooks/use-modal';
 import { RemoveFromCartModal } from '../remove-from-cart-modal/remove-from-cart-modal';
 import { useDispatch } from 'react-redux';
-import { incrementGuitarQuantity, decrementGuitarQuantity } from '../../store/cart/slice';
+import { incrementGuitarQuantity, decrementGuitarQuantity, changeGuitarInputQuantity } from '../../store/cart/slice';
+import sprite from '../../assets/sprite.svg';
 
 export function ProductItemInCart(props: {
   guitar: ICartItem
@@ -29,8 +29,8 @@ export function ProductItemInCart(props: {
     dispatch(incrementGuitarQuantity(id));
   };
 
-  const handleInputPriceChange = () => {
-    console.log(123);
+  const handleInputPriceChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeGuitarInputQuantity({id, value: evt.target.value}));
   };
 
   return (
@@ -68,7 +68,7 @@ export function ProductItemInCart(props: {
           <Icon width="8" height="2" name={`${sprite}#minus`} />
         </button>
 
-        <input className="quantity__input" value={quantity} onChange={handleInputPriceChange} type="number" placeholder="1" id="4-count" name="4-count" max="99" />
+        <input className="quantity__input" value={quantity === 0 ? '' : quantity} onChange={handleInputPriceChange} type="number" placeholder="1" id="4-count" name="4-count" max="99" />
 
         <button
           className="quantity__button"
