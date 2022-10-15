@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
-import { getTotalPrice } from '../../store/cart/selectors';
+import { getDiscountPercentage, getTotalPrice } from '../../store/cart/selectors';
 import { CartOrderAmount } from '../cart-order-amount/cart-order-amount';
 import { DiscountPromo } from '../discount-promo/discount-promo';
 
 export function CartFooter() {
   const totalPrice = useSelector(getTotalPrice);
-  const discount = 0;
-  const totalPriceAfterDiscount = totalPrice - discount;
+  const discountPercentage = useSelector(getDiscountPercentage);
+  const totalPriceAfterDiscount = totalPrice - totalPrice / 100 * discountPercentage;
+  const discount = totalPrice / 100 * discountPercentage;
 
   return (
     <div className="cart__footer">

@@ -1,13 +1,25 @@
+import cn from 'classnames';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/use-form';
+import { getDiscountPercentage } from '../../store/cart/selectors';
+import { sendCouponForDiscount } from '../../store/cart/slice';
 
 export function DiscountPromo() {
-  const {values, errors, handleFormSubmit, handleFormChange} = useForm<{coupon: string}>(sendPromoCode, {
+  const dispatch = useDispatch();
+  const [isCouponeSent, setIsCouponSent] = useState(false);
+  const discount = useSelector(getDiscountPercentage);
+  const {values, handleFormSubmit, handleFormChange} = useForm<{coupon: string}>(sendPromoCode, {
     coupon: {required: {value: true, message: 'Заполните поле'}},
   });
 
   function sendPromoCode() {
-    // eslint-disable-next-line no-console
-    console.log(values);
+    dispatch(sendCouponForDiscount(values.coupon));
+    setIsCouponSent(true);
+
+    setTimeout(() => {
+      setIsCouponSent(false);
+    }, 3000);
   }
 
   return (
@@ -28,13 +40,10 @@ export function DiscountPromo() {
           />
 
           {
-            errors.coupon &&
-            <p className="form-input__message form-input__message--error">Неверный промокод</p>
-          }
-
-          {
-            !errors.coupon &&
-            <p className="form-input__message form-input__message--success">Промокод принят</p>
+            isCouponeSent &&
+            <p className={cn('form-input__message', discount ? 'form-input__message--success' : 'form-input__message--error')}>
+              {discount > 0 ? 'Промокод принят' : 'Неверный промокод'}
+            </p>
           }
         </div>
 

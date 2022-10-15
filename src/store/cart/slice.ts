@@ -1,6 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { AnyAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { axiosInstance } from '../../api/api';
+import { ActionType } from '../../constants/action-type';
+import { ApiRoute } from '../../constants/api-route';
 import { MAX_ITEM_QUANTITY, MIN_ITEM_QUANTITY } from '../../constants/cart';
 import { ICart } from '../../types/ICart';
+
+export const sendCouponForDiscount = createAsyncThunk<Promise<void>, string>(
+  ActionType.SEND_COUPON_FOR_DISCOUNT,
+  async (coupon: string) => {
+    try {
+      const res = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}${ApiRoute.Coupons}`, {coupon});
+      return res.data;
+    } catch(error) {
+      throw new Error();
+    }
+  },
+);
 
 export const initialState: ICart = {
   items: [],
@@ -45,6 +60,15 @@ const cart = createSlice({
         guitar.quantity = MAX_ITEM_QUANTITY;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(sendCouponForDiscount.fulfilled, (state, action: AnyAction) =>  {
+        state.coupon = action.payload;
+      })
+      .addCase(sendCouponForDiscount.rejected, (state, action: AnyAction) =>  {
+        state.coupon = '';
+      });
   },
 });
 
