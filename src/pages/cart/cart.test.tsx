@@ -1,4 +1,4 @@
-import { Guitar } from './guitar';
+import { Cart } from './cart';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { mockStore, getMockStore } from '../../helpers/get-mock-store';
@@ -12,15 +12,15 @@ describe('App pages:', () => {
     store = getMockStore();
     store.dispatch = jest.fn();
   });
-  test('Guitars page route works correctly', () => {
+  test('Cart page route works correctly', () => {
     render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={[AppRoute.getGuitar('1')]}>
-          <Guitar />
+        <MemoryRouter initialEntries={[AppRoute.Cart]}>
+          <Cart />
         </MemoryRouter>
       </Provider>,
     );
 
-    expect(screen.getByText('Добавить в корзину')).toBeInTheDocument();
+    expect(screen.getByText('Добавьте товар в корзину.')).toBeInTheDocument();
   });
 });

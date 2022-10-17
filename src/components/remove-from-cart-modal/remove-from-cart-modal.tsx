@@ -53,6 +53,7 @@ export function RemoveFromCartModal(props: {
           <button
             className="button button--small modal__button"
             onClick={handleRemoveFromCartButtonClick}
+            data-testid="delete-item"
           >
             Удалить товар
           </button>

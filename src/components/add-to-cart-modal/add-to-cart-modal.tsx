@@ -73,6 +73,7 @@ export function AddToCartModal(props: {
           onClick={props.handleModalClose}
           type="button"
           aria-label="Закрыть"
+          data-testid="close-add-to-cart"
         >
           <span className="button-cross__icon" />
           <span className="modal__close-btn-interactive-area" />

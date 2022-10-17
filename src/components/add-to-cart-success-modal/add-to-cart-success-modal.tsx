@@ -40,6 +40,7 @@ export function AddToCartSuccessModal(props: {
             <button
               className="button button--black-border button--small modal__button modal__button--right"
               onClick={props.handleModalClose}
+              data-testid='continue-shopping'
             >
               Продолжить покупки
             </button>

@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { IGuitar } from '../../types/IGuitars';
 import { ProductItem } from './product-item';
+import { mockStore, getMockStore } from '../../helpers/get-mock-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 const testGuitar: IGuitar = {
   id: '2',
@@ -15,11 +18,22 @@ const testGuitar: IGuitar = {
 };
 
 describe('ProductItem component', () => {
+  let store: ReturnType<typeof mockStore>;
+
+  beforeEach(() => {
+    store = getMockStore();
+  });
+
   test('should be rendered correctly', () => {
     render(
-      <ProductItem
-        guitar={testGuitar}
-      />);
+      <Provider store={store}>
+        <BrowserRouter>
+          <ProductItem
+            guitar={testGuitar}
+          />
+        </BrowserRouter>
+      </Provider>,
+    );
 
     expect(screen.getByText('Test name')).toBeInTheDocument();
   });
