@@ -221,16 +221,8 @@ export function Catalog(props: {
         >
           {
             loading === 'idle' && guitars.map((guitar: IGuitar) => (
-              <ProductItem
-                key={guitar.id}
-                id={guitar.id}
-                name={guitar.name}
-                previewImg={`/${guitar.previewImg}`}
-                price={guitar.price}
-                rating={guitar.rating}
-                alt={guitar.name}
-                comments={guitar.comments}
-              />))
+              <ProductItem key={guitar.id} guitar={guitar}/>
+            ))
           }
           {
             loading === 'pending' && <Loader />

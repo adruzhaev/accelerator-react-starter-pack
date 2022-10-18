@@ -21,6 +21,7 @@ export function SuccessReviewModal(props: {
           <button
             className="button button--small modal__button modal__button--review"
             onClick={props.handleModalClose}
+            data-testid="close-modal"
           >
             К покупкам!
           </button>

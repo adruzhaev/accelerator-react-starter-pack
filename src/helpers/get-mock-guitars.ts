@@ -7,7 +7,7 @@ const GUITARS_COUNT = 5;
 const guitarName = ['Честер Bass', 'CURT Z300', 'Roman LX'];
 const guitarTypes = ['electric', 'ukulele', 'acoustic'];
 
-const createMockGuitar = ():IGuitar => ({
+export const createMockGuitar = ():IGuitar => ({
   id: nanoid(),
   name: getRandomItem(guitarName),
   vendorCode: 'SO757575',
@@ -17,6 +17,11 @@ const createMockGuitar = ():IGuitar => ({
   stringCount: 5,
   rating: 5,
   price: 100,
+});
+
+export const createMockGuitarInCart = () => ({
+  guitar: createMockGuitar(),
+  quantity: 1,
 });
 
 export const getMockGuitars = () => {

@@ -14,6 +14,9 @@ import { IComment } from '../../types/IComment';
 import { AddReviewModal } from '../../components/add-review-modal/add-review-modal';
 import { useModal } from '../../hooks/use-modal';
 import { SuccessReviewModal } from '../../components/success-review-modal/success-review-modal';
+import { AddToCartModal } from '../../components/add-to-cart-modal/add-to-cart-modal';
+import { AddToCartSuccessModal } from '../../components/add-to-cart-success-modal/add-to-cart-success-modal';
+import { useIsGuitarInCart } from '../../hooks/use-is-guitar-in-cart';
 
 const getBreadcrumbsItems = (guitarName = 'guitar') => [
   {title: 'Главная', link: AppRoute.Home},
@@ -29,8 +32,11 @@ export function Guitar() {
   const [reviewsToShow, setReviewsToShow] = useState(REVIEWS_TO_SHOW);
   const [isAddReviewModalShown, handleAddReviewModalOpen, handleAddReviewModalClose] = useModal();
   const [isSuccessReviewModalShown, handleSuccessReviewModalOpen, handleSuccessReviewModalClose] = useModal();
+  const [isAddToCartModalShown, handleAddToCartModalOpen, handleAddToCartModalClose] = useModal();
+  const [isAddToCartSuccessModalShown, handleAddToCartSuccessModalOpen, handleAddToCartSuccessModalClose] = useModal();
   const {data: guitar, loading} = useSelector(getGuitarById);
   const breadcrumbs = getBreadcrumbsItems(guitar.name);
+  const isGuitarInCart = useIsGuitarInCart(guitar.id);
 
   const showMoreReviewsClickHandler = () => {
     setReviewsToShow(reviewsToShow + REVIEWS_TO_SHOW);
@@ -59,7 +65,11 @@ export function Guitar() {
             stringCount={guitar.stringCount}
             commentsCount={guitar.comments?.length as number}
           />
-          <AddToCart price={formatNumberAsCurrency(guitar.price).toString()} />
+
+          <AddToCart
+            price={formatNumberAsCurrency(guitar.price).toString()}
+            handleAddToCartButtonClick={handleAddToCartModalOpen}
+          />
         </div>
       }
 
@@ -129,6 +139,26 @@ export function Guitar() {
         <SuccessReviewModal
           isModalShown={isSuccessReviewModalShown}
           handleModalClose={handleSuccessReviewModalClose}
+        />
+      }
+
+      {
+        isAddToCartModalShown &&
+        <AddToCartModal
+          isGuitarInCart={isGuitarInCart}
+          guitar={guitar}
+          isModalShown={isAddToCartModalShown}
+          handleModalClose={handleAddToCartModalClose}
+          handleAddToCartButtonClick={handleAddToCartSuccessModalOpen}
+        />
+      }
+
+      {
+        isAddToCartSuccessModalShown &&
+        <AddToCartSuccessModal
+          isModalShown={isAddToCartSuccessModalShown}
+          handleModalClose={handleAddToCartSuccessModalClose}
+          isContinueOnCatalog
         />
       }
     </div>

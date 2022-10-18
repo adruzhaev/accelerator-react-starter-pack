@@ -1,9 +1,11 @@
 import cn from 'classnames';
 import { InputSearch } from '../input-search/input-search';
 import { Logo } from '../logo/logo';
-import { Basket } from '../basket/basket';
+import { Cart } from '../cart/cart';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../constants/app-route';
+import { useSelector } from 'react-redux';
+import { getGuitarsQuantityFromCart } from '../../store/cart/selectors';
 
 const LINKS = [
   {
@@ -27,6 +29,7 @@ export function Header(props: {
     className?: string
 }) {
   const location = useLocation();
+  const guiatarsQuantity = useSelector(getGuitarsQuantityFromCart);
 
   return (
     <header className={cn('header', props.className)} id="header">
@@ -49,7 +52,7 @@ export function Header(props: {
         </nav>
 
         <InputSearch />
-        <Basket />
+        <Cart guitarsQuantity={guiatarsQuantity}/>
       </div>
     </header>);
 }
