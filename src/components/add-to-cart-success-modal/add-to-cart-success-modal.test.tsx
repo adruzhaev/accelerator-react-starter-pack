@@ -29,7 +29,6 @@ describe('AddToCartSuccessModal Component', () => {
   });
 
   test('should clicked once', () => {
-    // const isModalShown = false;
     render(
       <Provider store={store}>
         <BrowserRouter>

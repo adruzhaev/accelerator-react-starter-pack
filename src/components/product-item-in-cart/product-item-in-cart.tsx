@@ -40,6 +40,7 @@ export function ProductItemInCart(props: {
         onClick={handleRemoveFromCartModalOpen}
         type="button"
         aria-label="Удалить"
+        data-testid="delete-item"
       >
         <span className="button-cross__icon" />
         <span className="cart-item__close-button-interactive-area" />
