@@ -30,6 +30,10 @@ export function ProductItemInCart(props: {
   };
 
   const handleInputPriceChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    if (evt.target.value === '') {
+      handleRemoveFromCartModalOpen();
+    }
+
     dispatch(changeGuitarInputQuantity({id, value: evt.target.value}));
   };
 
@@ -69,7 +73,7 @@ export function ProductItemInCart(props: {
           <Icon width="8" height="2" name={`${sprite}#minus`} />
         </button>
 
-        <input className="quantity__input" value={quantity === 0 ? '' : quantity} onChange={handleInputPriceChange} type="number" placeholder="1" id="4-count" name="4-count" max="99" />
+        <input className="quantity__input" value={quantity} onChange={handleInputPriceChange} type="number" placeholder="1" id="4-count" name="4-count" max="99" />
 
         <button
           className="quantity__button"
