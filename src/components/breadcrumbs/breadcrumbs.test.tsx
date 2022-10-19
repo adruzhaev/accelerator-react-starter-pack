@@ -13,6 +13,6 @@ describe('Breadcrumbs component', () => {
         <Breadcrumbs items={breadcrumbsItems} />
       </BrowserRouter>,
     );
-    expect(screen.getByText('Main')).toBeInTheDocument();
+    expect(screen.getByText('Товар')).toBeInTheDocument();
   });
 });
