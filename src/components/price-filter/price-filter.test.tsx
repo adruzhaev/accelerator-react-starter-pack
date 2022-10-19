@@ -5,10 +5,10 @@ describe('PriceFilter component', () => {
   test('should be rendered correctly', () => {
     render(
       <PriceFilter
-        handleMinPriceChange={jest.fn()}
-        handleMaxPriceChange={jest.fn()}
-        handleMaxPriceBlur={jest.fn()}
-        handleMinPriceBlur={jest.fn()}
+        onMinPriceChange={jest.fn()}
+        onMaxPriceChange={jest.fn()}
+        onMaxPriceBlur={jest.fn()}
+        onMinPriceBlur={jest.fn()}
         minPrice={100}
         maxPrice={1000}
         valueMaxPrice="100"

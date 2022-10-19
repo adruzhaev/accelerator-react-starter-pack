@@ -21,7 +21,7 @@ describe('RemoveFromCartModal Component', () => {
         <BrowserRouter>
           <RemoveFromCartModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
             guitar={guitar}
           />
         </BrowserRouter>
@@ -37,7 +37,7 @@ describe('RemoveFromCartModal Component', () => {
         <BrowserRouter>
           <RemoveFromCartModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
             guitar={guitar}
           />
         </BrowserRouter>

@@ -184,10 +184,10 @@ export function Catalog(props: {
         <form className="catalog-filter">
           <H2 className="catalog__filter" title="Фильтр" />
           <PriceFilter
-            handleMinPriceChange={handleMinPriceChange}
-            handleMaxPriceChange={handleMaxPriceChange}
-            handleMinPriceBlur={handleMinPriceBlur}
-            handleMaxPriceBlur={handleMaxPriceBlur}
+            onMinPriceChange={handleMinPriceChange}
+            onMaxPriceChange={handleMaxPriceChange}
+            onMinPriceBlur={handleMinPriceBlur}
+            onMaxPriceBlur={handleMaxPriceBlur}
             minPrice={guitarsPrice.min}
             maxPrice={guitarsPrice.max}
             valueMinPrice={minPrice}

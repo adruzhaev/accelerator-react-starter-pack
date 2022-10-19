@@ -6,7 +6,7 @@ describe('AddToCart Component', () => {
   test('should be rendered correctly', () => {
     render(
       <BrowserRouter>
-        <AddToCart price='1000' handleAddToCartButtonClick={jest.fn()} />
+        <AddToCart price='1000' onAddToCartButtonClick={jest.fn()} />
       </BrowserRouter>,
     );
 

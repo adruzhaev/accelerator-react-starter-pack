@@ -10,12 +10,12 @@ import { useHistory } from 'react-router-dom';
 
 export function AddToCartSuccessModal(props: {
   isModalShown: boolean
-  handleModalClose: () => void
+  onModalClose: () => void
   isContinueOnCatalog?: boolean
 }) {
   const history = useHistory();
   const addToCartModalSuccessRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(addToCartModalSuccessRef, props.handleModalClose);
+  useOnClickOutside(addToCartModalSuccessRef, props.onModalClose);
 
   return (
     <LockFocus>
@@ -29,7 +29,7 @@ export function AddToCartSuccessModal(props: {
           <button
             className="button button--small modal__button"
             onClick={() => {
-              props.handleModalClose();
+              props.onModalClose();
               history.push(AppRoute.Cart);
             }}
           >
@@ -39,7 +39,7 @@ export function AddToCartSuccessModal(props: {
             !props.isContinueOnCatalog &&
             <button
               className="button button--black-border button--small modal__button modal__button--right"
-              onClick={props.handleModalClose}
+              onClick={props.onModalClose}
               data-testid='continue-shopping'
             >
               Продолжить покупки
@@ -59,7 +59,7 @@ export function AddToCartSuccessModal(props: {
 
         <button
           className="modal__close-btn button-cross"
-          onClick={props.handleModalClose}
+          onClick={props.onModalClose}
           type="button"
           aria-label="Закрыть"
         >

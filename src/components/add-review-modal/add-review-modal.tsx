@@ -8,10 +8,10 @@ import { sendReviewToGuitar } from '../../store/guitars/slice';
 import LockFocus from 'react-focus-lock';
 
 export function AddReviewModal(props: {
-  handleModalClose: () => void
+  onModalClose: () => void
   isModalShown: boolean
   guitarName: string
-  handleReviewFormSend: () => void
+  onReviewFormSend: () => void
   guitarId: number
 }) {
   const dispatch = useDispatch();
@@ -22,12 +22,12 @@ export function AddReviewModal(props: {
 
   function sendForm() {
     dispatch(sendReviewToGuitar({...values, 'guitarId': props.guitarId}));
-    props.handleReviewFormSend();
-    props.handleReviewFormSend();
+    props.onReviewFormSend();
+    props.onReviewFormSend();
   }
 
   const addReviewModalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(addReviewModalRef, props.handleModalClose);
+  useOnClickOutside(addReviewModalRef, props.onModalClose);
 
   return (
     <LockFocus>
@@ -117,7 +117,7 @@ export function AddReviewModal(props: {
 
         <button
           className="modal__close-btn button-cross"
-          onClick={props.handleModalClose}
+          onClick={props.onModalClose}
           type="button"
           aria-label="Закрыть"
           data-testid="close-review"

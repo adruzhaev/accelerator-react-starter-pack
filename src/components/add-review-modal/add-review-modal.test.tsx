@@ -19,10 +19,10 @@ describe('AddReviewModal Component', () => {
       <Provider store={store}>
         <BrowserRouter>
           <AddReviewModal
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
             isModalShown
             guitarName="Name"
-            handleReviewFormSend={handleReviewFormSend}
+            onReviewFormSend={handleReviewFormSend}
             guitarId={2}
           />
         </BrowserRouter>
@@ -38,10 +38,10 @@ describe('AddReviewModal Component', () => {
       <Provider store={store}>
         <BrowserRouter>
           <AddReviewModal
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
             isModalShown={isModalShown}
             guitarName="Name"
-            handleReviewFormSend={handleReviewFormSend}
+            onReviewFormSend={handleReviewFormSend}
             guitarId={2}
           />
         </BrowserRouter>

@@ -3,10 +3,10 @@ import { FilterType } from '../filter-type/filter-type';
 import { InputPrice } from '../input-price/input-price';
 
 export function PriceFilter(props: {
-  handleMinPriceChange: ChangeEventHandler<HTMLInputElement>
-  handleMaxPriceChange: ChangeEventHandler<HTMLInputElement>
-  handleMinPriceBlur: FocusEventHandler<HTMLInputElement>
-  handleMaxPriceBlur: FocusEventHandler<HTMLInputElement>
+  onMinPriceChange: ChangeEventHandler<HTMLInputElement>
+  onMaxPriceChange: ChangeEventHandler<HTMLInputElement>
+  onMinPriceBlur: FocusEventHandler<HTMLInputElement>
+  onMaxPriceBlur: FocusEventHandler<HTMLInputElement>
   minPrice: number
   maxPrice: number
   valueMinPrice: string
@@ -20,8 +20,8 @@ export function PriceFilter(props: {
           placeholder={props.minPrice?.toString()}
           id="priceMin"
           name="от"
-          onChange={props.handleMinPriceChange}
-          onBlur={props.handleMinPriceBlur}
+          onChange={props.onMinPriceChange}
+          onBlur={props.onMinPriceBlur}
           min={props.minPrice}
           value={props.valueMinPrice}
         />
@@ -30,8 +30,8 @@ export function PriceFilter(props: {
           placeholder={props.maxPrice?.toString()}
           id="priceMax"
           name="до"
-          onChange={props.handleMaxPriceChange}
-          onBlur={props.handleMaxPriceBlur}
+          onChange={props.onMaxPriceChange}
+          onBlur={props.onMaxPriceBlur}
           max={props.maxPrice}
           value={props.valueMaxPrice}
         />

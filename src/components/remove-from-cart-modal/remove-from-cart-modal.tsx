@@ -10,17 +10,17 @@ import { deleteFromCart } from '../../store/cart/slice';
 
 export function RemoveFromCartModal(props: {
   isModalShown: boolean
-  handleModalClose: () => void
+  onModalClose: () => void
   guitar: IGuitar
 }) {
   const dispatch = useDispatch();
   const {name, vendorCode, type, stringCount, previewImg, price} = props.guitar;
   const removeFromCartModalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(removeFromCartModalRef, props.handleModalClose);
+  useOnClickOutside(removeFromCartModalRef, props.onModalClose);
 
   const handleRemoveFromCartButtonClick = () => {
     dispatch(deleteFromCart({guitar: props.guitar}));
-    props.handleModalClose();
+    props.onModalClose();
   };
 
   return (
@@ -59,7 +59,7 @@ export function RemoveFromCartModal(props: {
           </button>
           <button
             className="button button--black-border button--small modal__button modal__button--right"
-            onClick={props.handleModalClose}
+            onClick={props.onModalClose}
           >
             Продолжить покупки
           </button>
@@ -67,7 +67,7 @@ export function RemoveFromCartModal(props: {
 
         <button
           className="modal__close-btn button-cross"
-          onClick={props.handleModalClose}
+          onClick={props.onModalClose}
           type="button"
           aria-label="Закрыть"
         >

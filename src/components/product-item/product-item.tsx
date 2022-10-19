@@ -61,8 +61,8 @@ export function ProductItem(props: {
         <AddToCartModal
           isGuitarInCart={isGuitarInCart}
           isModalShown={isAddToCartModalShown}
-          handleModalClose={handleAddToCartModalClose}
-          handleAddToCartButtonClick={handleAddToCartSuccessModalOpen}
+          onModalClose={handleAddToCartModalClose}
+          onAddToCartButtonClick={handleAddToCartSuccessModalOpen}
           guitar={props.guitar}
         />
       }
@@ -71,7 +71,7 @@ export function ProductItem(props: {
         isAddToCartSuccessModalShown &&
         <AddToCartSuccessModal
           isModalShown={isAddToCartSuccessModalShown}
-          handleModalClose={handleAddToCartSuccessModalClose}
+          onModalClose={handleAddToCartSuccessModalClose}
         />
       }
     </div>

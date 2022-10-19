@@ -10,14 +10,14 @@ import { addToCart, incrementGuitarQuantity } from '../../store/cart/slice';
 
 export function AddToCartModal(props: {
   isModalShown: boolean
-  handleModalClose: () => void
-  handleAddToCartButtonClick: () => void
+  onModalClose: () => void
+  onAddToCartButtonClick: () => void
   guitar: IGuitar
   isGuitarInCart: boolean
 }) {
   const dispatch = useDispatch();
   const addToCartModalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(addToCartModalRef, props.handleModalClose);
+  useOnClickOutside(addToCartModalRef, props.onModalClose);
 
   const handleAddToCartCLick = () => {
     if (props.isGuitarInCart) {
@@ -29,8 +29,8 @@ export function AddToCartModal(props: {
       dispatch(addToCart({guitar: props.guitar, quantity: 1}));
     }
 
-    props.handleAddToCartButtonClick();
-    props.handleModalClose();
+    props.onAddToCartButtonClick();
+    props.onModalClose();
   };
 
   return (
@@ -70,7 +70,7 @@ export function AddToCartModal(props: {
 
         <button
           className="modal__close-btn button-cross"
-          onClick={props.handleModalClose}
+          onClick={props.onModalClose}
           type="button"
           aria-label="Закрыть"
           data-testid="close-add-to-cart"

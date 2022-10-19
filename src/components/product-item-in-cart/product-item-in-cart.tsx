@@ -93,7 +93,7 @@ export function ProductItemInCart(props: {
         <RemoveFromCartModal
           guitar={props.guitar.guitar}
           isModalShown={isRemoveFromCartModalShown}
-          handleModalClose={handleRemoveFromCartModalClose}
+          onModalClose={handleRemoveFromCartModalClose}
         />
       }
     </div>

@@ -68,7 +68,7 @@ export function Guitar() {
 
           <AddToCart
             price={formatNumberAsCurrency(guitar.price).toString()}
-            handleAddToCartButtonClick={handleAddToCartModalOpen}
+            onAddToCartButtonClick={handleAddToCartModalOpen}
           />
         </div>
       }
@@ -124,8 +124,8 @@ export function Guitar() {
         isAddReviewModalShown &&
         <AddReviewModal
           isModalShown={isAddReviewModalShown}
-          handleModalClose={handleAddReviewModalClose}
-          handleReviewFormSend={(): void => {
+          onModalClose={handleAddReviewModalClose}
+          onReviewFormSend={(): void => {
             handleAddReviewModalClose();
             handleSuccessReviewModalOpen();
           }}
@@ -138,7 +138,7 @@ export function Guitar() {
         isSuccessReviewModalShown &&
         <SuccessReviewModal
           isModalShown={isSuccessReviewModalShown}
-          handleModalClose={handleSuccessReviewModalClose}
+          onModalClose={handleSuccessReviewModalClose}
         />
       }
 
@@ -148,8 +148,8 @@ export function Guitar() {
           isGuitarInCart={isGuitarInCart}
           guitar={guitar}
           isModalShown={isAddToCartModalShown}
-          handleModalClose={handleAddToCartModalClose}
-          handleAddToCartButtonClick={handleAddToCartSuccessModalOpen}
+          onModalClose={handleAddToCartModalClose}
+          onAddToCartButtonClick={handleAddToCartSuccessModalOpen}
         />
       }
 
@@ -157,7 +157,7 @@ export function Guitar() {
         isAddToCartSuccessModalShown &&
         <AddToCartSuccessModal
           isModalShown={isAddToCartSuccessModalShown}
-          handleModalClose={handleAddToCartSuccessModalClose}
+          onModalClose={handleAddToCartSuccessModalClose}
           isContinueOnCatalog
         />
       }

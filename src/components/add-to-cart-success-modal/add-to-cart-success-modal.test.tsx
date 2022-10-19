@@ -19,7 +19,7 @@ describe('AddToCartSuccessModal Component', () => {
         <BrowserRouter>
           <AddToCartSuccessModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
           />
         </BrowserRouter>
       </Provider>,
@@ -34,7 +34,7 @@ describe('AddToCartSuccessModal Component', () => {
         <BrowserRouter>
           <AddToCartSuccessModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
           />
         </BrowserRouter>
       </Provider>,

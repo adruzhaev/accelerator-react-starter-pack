@@ -22,8 +22,8 @@ describe('AddToCartModal Component', () => {
         <BrowserRouter>
           <AddToCartModal
             isModalShown
-            handleModalClose={handleModalClose}
-            handleAddToCartButtonClick={handleAddToCartButtonClick}
+            onModalClose={handleModalClose}
+            onAddToCartButtonClick={handleAddToCartButtonClick}
             guitar={guitar}
             isGuitarInCart
           />
@@ -40,8 +40,8 @@ describe('AddToCartModal Component', () => {
         <BrowserRouter>
           <AddToCartModal
             isModalShown
-            handleModalClose={handleModalClose}
-            handleAddToCartButtonClick={handleAddToCartButtonClick}
+            onModalClose={handleModalClose}
+            onAddToCartButtonClick={handleAddToCartButtonClick}
             guitar={guitar}
             isGuitarInCart
           />

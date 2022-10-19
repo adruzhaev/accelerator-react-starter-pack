@@ -6,11 +6,11 @@ import { useRef } from 'react';
 import LockFocus from 'react-focus-lock';
 
 export function SuccessReviewModal(props: {
-  handleModalClose: () => void
+  onModalClose: () => void
   isModalShown: boolean
 }) {
   const successReviewModalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(successReviewModalRef, props.handleModalClose);
+  useOnClickOutside(successReviewModalRef, props.onModalClose);
 
   return (
     <LockFocus>
@@ -20,7 +20,7 @@ export function SuccessReviewModal(props: {
         <div className="modal__button-container modal__button-container--review">
           <button
             className="button button--small modal__button modal__button--review"
-            onClick={props.handleModalClose}
+            onClick={props.onModalClose}
             data-testid="close-modal"
           >
             К покупкам!
@@ -28,7 +28,7 @@ export function SuccessReviewModal(props: {
         </div>
         <button
           className="modal__close-btn button-cross"
-          onClick={props.handleModalClose}
+          onClick={props.onModalClose}
           type="button"
           aria-label="Закрыть"
         >

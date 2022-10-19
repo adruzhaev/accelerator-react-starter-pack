@@ -19,7 +19,7 @@ describe('SuccessReviewModal Component', () => {
         <BrowserRouter>
           <SuccessReviewModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
           />
         </BrowserRouter>
       </Provider>,
@@ -34,7 +34,7 @@ describe('SuccessReviewModal Component', () => {
         <BrowserRouter>
           <SuccessReviewModal
             isModalShown
-            handleModalClose={handleModalClose}
+            onModalClose={handleModalClose}
           />
         </BrowserRouter>
       </Provider>,

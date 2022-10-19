@@ -1,6 +1,6 @@
 export function AddToCart(props: {
   price: string
-  handleAddToCartButtonClick: () => void
+  onAddToCartButtonClick: () => void
 }) {
   return (
     <div className="product-container__price-wrapper">
@@ -9,7 +9,7 @@ export function AddToCart(props: {
 
       <button
         className="button button--red button--big product-container__button"
-        onClick={props.handleAddToCartButtonClick}
+        onClick={props.onAddToCartButtonClick}
       >
         Добавить в корзину
       </button>
